@@ -8,13 +8,16 @@ Browse your favorite subreddits (and hackernews) via Alfred.
 
 <img width="70%" alt="showcase browsing a subreddit" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/8d675449-431c-4ba1-8e6f-a75e263ee942">
 
+<img width="50%" alt="settings the workflow has to offer" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/81177245-8c1b-47fa-9078-bf1de78248fd">
+
 ## Features
 - Browse subreddits, switch between subreddits.
 - No reddit account needed. 
 - Save scrolling positions, mark posts as new, old or visited.
+- Minimum upvotes to display posts, customizable sorting method.
 - Can also browse hackernews.
 - Optionally open in posts [old reddit](https://old.reddit.com/).
-- Due to smart caching, this workflow should never hit API rate limits (under normal usage).
+- Due to smart caching, this workflow should not hit API rate limits (under normal usage).
 
 ## Installation
 [➡️ Download the latest release.](https://github.com/chrisgrieser/alfred-reddit-browser/releases/latest)
@@ -29,7 +32,9 @@ When admitted to the Alfred Gallery, the workflow auto-updates via Alfred's work
 	- <kbd>⇧⌘⏎</kbd>: Switch to previous subreddit.
 	- <kbd>⌥⏎</kbd>: Copy URL of post to clipboard.
 	- <kbd>⇧⏎</kbd>: Open URL (if external link).
-	- <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. You can use the arrow keys to preview to the next result. Mostly useful for images. 
+	- <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. You can use the arrow keys to preview to the next result. Mostly useful for images.
+
+Some settings only take affect after refreshing. You can manually force refreshing all subreddits via `:reddit`, but doing so will also clear all visitation icons, reading positions, and new/old marks.
 
 ## Credits
 <!-- vale Google.FirstPerson = NO -->
