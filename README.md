@@ -4,17 +4,17 @@
 
 Browse your favorite subreddits (and hackernews) via Alfred.
 
-<img width="70%" alt="Pasted image 2023-08-11 at 10 33 24@2x" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/bf805e00-7a5e-4325-9069-ff273b2f6c06">
+<img width="70%" alt="showcase subreddit selection" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/bf805e00-7a5e-4325-9069-ff273b2f6c06">
 
-<img width="70%" alt="Pasted image 2023-08-11 at 10 41 29@2x" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/8d675449-431c-4ba1-8e6f-a75e263ee942">
+<img width="70%" alt="showcase browsing a subreddit" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/8d675449-431c-4ba1-8e6f-a75e263ee942">
 
 ## Features
 - Browse subreddits, switch between subreddits.
-- Save scrolling positions, mark posts as new, old or visited.
-- Open in posts [old reddit](https://old.reddit.com/).
-- Can also browse hackernews.
 - No reddit account needed. 
-- Due to smart caching, this workflow should never hit API rate limits under normal usage.
+- Save scrolling positions, mark posts as new, old or visited.
+- Can also browse hackernews.
+- Optionally open in posts [old reddit](https://old.reddit.com/).
+- Due to smart caching, this workflow should never hit API rate limits (under normal usage).
 
 ## Installation
 [➡️ Download the latest release.](https://github.com/chrisgrieser/alfred-reddit-browser/releases/latest)
@@ -41,6 +41,7 @@ __Profiles__
 - [Discord](https://discordapp.com/users/462774483044794368/)
 - [Academic Website](https://chris-grieser.de/)
 - [Twitter](https://twitter.com/pseudo_meta)
+- [Mastodon](https://pkm.social/@pseudometa)
 - [ResearchGate](https://www.researchgate.net/profile/Christopher-Grieser)
 - [LinkedIn](https://www.linkedin.com/in/christopher-grieser-ba693b17a/)
 
