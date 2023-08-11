@@ -1,7 +1,7 @@
-# {{workflow-name}}
-![](https://img.shields.io/github/downloads/chrisgrieser/{{workflow-id}}/total?label=Total%20Downloads&style=plastic) ![](https://img.shields.io/github/v/release/chrisgrieser/{{workflow-id}}?label=Latest%20Release&style=plastic) 
+# alfred reddit browser
+![](https://img.shields.io/github/downloads/chrisgrieser/alfred-reddit-browser/total?label=Total%20Downloads&style=plastic) ![](https://img.shields.io/github/v/release/chrisgrieser/alfred-reddit-browser?label=Latest%20Release&style=plastic) 
 
-{{workflow-description}}
+Browse your favorite subreddits (and hackernews) via Alfred.
 
 <img src="./assets/showcase.png" alt="showcase" width="50%">
 
@@ -9,7 +9,7 @@
 - 
 
 ## Installation
-[➡️ Download the latest release.](https://github.com/chrisgrieser/{{workflow-id}}/releases/latest)
+[➡️ Download the latest release.](https://github.com/chrisgrieser/alfred-reddit-browser/releases/latest)
 
 When admitted to the Alfred Gallery, the workflow auto-updates via Alfred's workflow-update mechanism.
 
