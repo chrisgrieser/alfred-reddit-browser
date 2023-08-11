@@ -4,6 +4,10 @@
 
 Browse your favorite subreddits (and hackernews) via Alfred.
 
+<img width="70%" alt="Pasted image 2023-08-11 at 10 33 24@2x" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/bf805e00-7a5e-4325-9069-ff273b2f6c06">
+
+<img width="70%" alt="Pasted image 2023-08-11 at 10 41 29@2x" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/8d675449-431c-4ba1-8e6f-a75e263ee942">
+
 ## Features
 - Browse subreddits, switch between subreddits.
 - Save scrolling positions, mark posts as new, old or visited.
