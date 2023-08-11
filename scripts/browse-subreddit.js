@@ -51,6 +51,7 @@ function cacheIsOutdated(path) {
 // rome-ignore lint/correctness/noUnusedVariables: Alfred run
 function run() {
 	const timelogStart = +new Date();
+
 	// determine subreddit
 	const prevRunSubreddit = readFile($.getenv("alfred_workflow_cache") + "/current_subreddit");
 	const selectedWithAlfred = $.NSProcessInfo.processInfo.environment.objectForKey("selected_subreddit").js;
@@ -93,10 +94,15 @@ function run() {
 		console.log("Writing new cache for r/" + subredditName);
 		// rome-ignore lint/correctness/noUndeclaredVariables: JXA import HACK
 		posts = getRedditPosts(subredditName, oldItems);
-		if (!posts) {
-			return JSON.stringify({ items: [{ title: "Error", subtitle: "No response from reddit API" }] });
-		}
 	}
+
+	// GUARDS: no API response or no posts left after filtering for min upvote count
+	if (!posts) {
+		return JSON.stringify({ items: [{ title: "Error", subtitle: "No response from API." }] });
+	} else if (posts.length === 0) {
+		return JSON.stringify({ items: [{ title: "No Posts higher than minimum upvote count" }] });
+	}
+
 	writeToFile(subredditCache, JSON.stringify(posts));
 
 	const durationSecs = (+new Date() - timelogStart) / 1000;
