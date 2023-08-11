@@ -1,12 +1,16 @@
-# alfred reddit browser
+<!-- LTeX: enabled=false -->
+# reddit browser <!-- LTeX: enabled=true -->
 ![](https://img.shields.io/github/downloads/chrisgrieser/alfred-reddit-browser/total?label=Total%20Downloads&style=plastic) ![](https://img.shields.io/github/v/release/chrisgrieser/alfred-reddit-browser?label=Latest%20Release&style=plastic) 
 
 Browse your favorite subreddits (and hackernews) via Alfred.
 
-<img src="./assets/showcase.png" alt="showcase" width="50%">
-
 ## Features
-- 
+- Browse subreddits, switch between subreddits.
+- Save scrolling positions, mark posts as new, old or visited.
+- Open in posts [old reddit](https://old.reddit.com/).
+- Can also browse hackernews.
+- No reddit account needed. 
+- Due to smart caching, this workflow should never hit API rate limits under normal usage.
 
 ## Installation
 [➡️ Download the latest release.](https://github.com/chrisgrieser/alfred-reddit-browser/releases/latest)
@@ -14,7 +18,14 @@ Browse your favorite subreddits (and hackernews) via Alfred.
 When admitted to the Alfred Gallery, the workflow auto-updates via Alfred's workflow-update mechanism.
 
 ## Usage
-- 
+- `sub`: Select subreddit to browse.
+- `rr`: Browse the current subreddit.
+	- <kbd>⏎</kbd>: Open Post on reddit.
+	- <kbd>⌘⏎</kbd>: Switch to next subreddit.
+	- <kbd>⇧⌘⏎</kbd>: Switch to previous subreddit.
+	- <kbd>⌥⏎</kbd>: Copy URL of post to clipboard.
+	- <kbd>⇧⏎</kbd>: Open URL (if external link).
+	- <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. You can use the arrow keys to preview to the next result. Mostly useful for images. 
 
 ## Credits
 <!-- vale Google.FirstPerson = NO -->
