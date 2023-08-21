@@ -34,8 +34,6 @@ When admitted to the Alfred Gallery, the workflow auto-updates via Alfred's work
 	- <kbd>⇧⏎</kbd>: Open URL (if external link).
 	- <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. You can use the arrow keys to preview to the next result. Mostly useful for images.
 
-Some settings only take affect after refreshing. You can manually force refreshing all subreddits via `:reddit`, but doing so will also clear all visitation icons, reading positions, and new/old marks.
-
 ## Credits
 <!-- vale Google.FirstPerson = NO -->
 __About Me__  
