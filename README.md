@@ -1,6 +1,8 @@
 <!-- LTeX: enabled=false -->
-# reddit browser <!-- LTeX: enabled=true -->
-![](https://img.shields.io/github/downloads/chrisgrieser/alfred-reddit-browser/total?label=Total%20Downloads&style=plastic) ![](https://img.shields.io/github/v/release/chrisgrieser/alfred-reddit-browser?label=Latest%20Release&style=plastic) 
+# reddit browser
+<!-- LTeX: enabled=true -->
+
+![Showcase subreddit selection](https://img.shields.io/github/downloads/chrisgrieser/alfred-reddit-browser/total?label=Total%20Downloads&style=plastic) ![showcase browsing a subreddit](https://img.shields.io/github/v/release/chrisgrieser/alfred-reddit-browser?label=Latest%20Release&style=plastic)
 
 Browse your favorite subreddits (and hackernews) via Alfred.
 
@@ -12,7 +14,7 @@ Browse your favorite subreddits (and hackernews) via Alfred.
 
 ## Features
 - Browse subreddits, switch between subreddits.
-- No reddit account needed. 
+- No reddit account needed.
 - Save scrolling positions, mark posts as new, old or visited.
 - Minimum upvotes to display posts, customizable sorting method.
 - Can also browse hackernews.
@@ -27,12 +29,12 @@ When admitted to the Alfred Gallery, the workflow auto-updates via Alfred's work
 ## Usage
 - `sub`: Select subreddit to browse.
 - `rr`: Browse the current subreddit.
-	- <kbd>⏎</kbd>: Open Post on reddit.
-	- <kbd>⌘⏎</kbd>: Switch to next subreddit.
-	- <kbd>⇧⌘⏎</kbd>: Switch to previous subreddit.
-	- <kbd>⌥⏎</kbd>: Copy URL of post to clipboard.
-	- <kbd>⇧⏎</kbd>: Open URL (if external link).
-	- <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. You can use the arrow keys to preview to the next result. Mostly useful for images.
+	+ <kbd>⏎</kbd>: Open Post on reddit.
+	+ <kbd>⌘⏎</kbd>: Switch to next subreddit.
+	+ <kbd>⇧⌘⏎</kbd>: Switch to previous subreddit.
+	+ <kbd>⌥⏎</kbd>: Copy URL of post to clipboard.
+	+ <kbd>⇧⏎</kbd>: Open URL (if external link).
+	+ <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. You can use the arrow keys to preview to the next result. Mostly useful for images.
 
 ## Credits
 <!-- vale Google.FirstPerson = NO -->
