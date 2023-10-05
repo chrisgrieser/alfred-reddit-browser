@@ -4,7 +4,7 @@
 
 ![Showcase subreddit selection](https://img.shields.io/github/downloads/chrisgrieser/alfred-reddit-browser/total?label=Total%20Downloads&style=plastic) ![showcase browsing a subreddit](https://img.shields.io/github/v/release/chrisgrieser/alfred-reddit-browser?label=Latest%20Release&style=plastic)
 
-Browse your favorite subreddits (and hackernews) via Alfred.
+Browse your favorite subreddits (and hackernews) via Alfred. [Featured in the Alfred Gallery](https://alfred.app/workflows/chrisgrieser/reddit-browser/).
 
 <img width="70%" alt="showcase subreddit selection" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/bf805e00-7a5e-4325-9069-ff273b2f6c06">
 
