@@ -43,7 +43,7 @@ function ensureCacheFolderExists() {
  * @param {string} iconPath
  * @param {string} subredditName
  */
-function cacheSubredditIcon(iconPath, subredditName) {
+function cacheAndReturnSubIcon(iconPath, subredditName) {
 	// HACK reddit API does not like curl (lol)
 	const redditApiCall = `curl -sL -H "User-Agent: Chrome/115.0.0.0" "https://www.reddit.com/r/${subredditName}/about.json"`;
 	const subredditInfo = JSON.parse(app.doShellScript(redditApiCall));
@@ -63,7 +63,7 @@ function cacheSubredditIcon(iconPath, subredditName) {
 }
 
 /** @param {string} subredditName */
-function cacheAndReturnSubscriberCount(subredditName) {
+function cacheAndReturnSubCount(subredditName) {
 	const redditApiCall = `curl -sL -H "User-Agent: Chrome/115.0.0.0" "https://www.reddit.com/r/${subredditName}/about.json"`;
 	const subredditInfo = JSON.parse(app.doShellScript(redditApiCall));
 	if (subredditInfo.error) {
@@ -107,17 +107,18 @@ function run() {
 		// cache subreddit image
 		let iconPath = `${iconFolder}/${subredditName}.png`;
 		if (!fileExists(iconPath)) {
-			const success = cacheSubredditIcon(iconPath, subredditName);
+			const success = cacheAndReturnSubIcon(iconPath, subredditName);
 			if (!fileExists(iconPath)) iconPath = "icon.png"; // if icon cannot be cached, use default
-			if (!success) subtitle = "⚠️ error or subreddit not found (see debugging log) ";
+			if (!success) subtitle += "⚠️ subreddit icon error ";
 		}
 
 		// subscriber count
 		const subscriberData = JSON.parse(
 			readFile($.getenv("alfred_workflow_cache") + "/subscriberCount.json") || "{}",
 		);
-		const subscriberCount = subscriberData[subredditName] || cacheAndReturnSubscriberCount(subredditName);
-		if (!subscriberCount) subtitle = "⚠️ error or subreddit not found (see debugging log) ";
+		const subscriberCount =
+			subscriberData[subredditName] || cacheAndReturnSubCount(subredditName);
+		if (!subscriberCount) subtitle += "⚠️ subscriber count error ";
 		subtitle += `👥 ${subscriberCount}`;
 
 		/** @type AlfredItem */
