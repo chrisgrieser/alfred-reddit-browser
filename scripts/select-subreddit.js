@@ -63,7 +63,7 @@ function cacheSubredditIcon(iconPath, subredditName) {
 }
 
 /** @param {string} subredditName */
-function cacheSubscriberCount(subredditName) {
+function cacheAndReturnSubscriberCount(subredditName) {
 	const redditApiCall = `curl -sL -H "User-Agent: Chrome/115.0.0.0" "https://www.reddit.com/r/${subredditName}/about.json"`;
 	const subredditInfo = JSON.parse(app.doShellScript(redditApiCall));
 	if (subredditInfo.error) {
@@ -72,12 +72,17 @@ function cacheSubscriberCount(subredditName) {
 	}
 
 	ensureCacheFolderExists();
-	const subscriberCount = subredditInfo.data.subscribers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+	const subscriberCount = subredditInfo.data.subscribers
+		.toString()
+		.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	const subscriberData = JSON.parse(
 		readFile($.getenv("alfred_workflow_cache") + "/subscriberCount.json") || "{}",
 	);
 	subscriberData[subredditName] = subscriberCount;
-	writeToFile(`${$.getenv("alfred_workflow_cache")}/subscriberCount.json`, JSON.stringify(subscriberData));
+	writeToFile(
+		`${$.getenv("alfred_workflow_cache")}/subscriberCount.json`,
+		JSON.stringify(subscriberData),
+	);
 	return subscriberCount; // = no error
 }
 
@@ -86,42 +91,44 @@ function cacheSubscriberCount(subredditName) {
 /** @type {AlfredRun} */
 // biome-ignore lint/correctness/noUnusedVariables: Alfred run
 function run() {
-	const subreddits = $.getenv("subreddits")
-		.split("\n")
-		.map((subredditName) => {
-			let subtitle = "";
+	const subredditConfig = $.getenv("subreddits");
 
-			// cache subreddit image
-			let iconPath = `${iconFolder}/${subredditName}.png`;
-			if (!fileExists(iconPath)) {
-				const success = cacheSubredditIcon(iconPath, subredditName);
+	// GUARD misconfiguration
+	if (subredditConfig.match(/^r\//m)) {
+		const msg = "Config error: subreddit names must not start with 'r/'";
+		return JSON.stringify({ items: [{ title: msg, valid: false }] });
+	}
 
-				// if icon cannot be cached, use default icon
-				if (!fileExists(iconPath)) iconPath = "icon.png";
+	//───────────────────────────────────────────────────────────────────────────
 
-				if (!success) subtitle = "⚠️ error or subreddit not found (see debugging log) ";
-			}
+	const subreddits = subredditConfig.split("\n").map((subredditName) => {
+		let subtitle = "";
 
-			// subscriber count
-			const subscriberData = JSON.parse(
-				readFile($.getenv("alfred_workflow_cache") + "/subscriberCount.json") || "{}",
-			);
-			let subscriberCount = subscriberData[subredditName];
-			if (!subscriberCount) {
-				subscriberCount = cacheSubscriberCount(subredditName);
-				if (!subscriberCount) subtitle = "⚠️ error or subreddit not found (see debugging log) ";
-			} 
-			subtitle += `👥 ${subscriberCount}`;
+		// cache subreddit image
+		let iconPath = `${iconFolder}/${subredditName}.png`;
+		if (!fileExists(iconPath)) {
+			const success = cacheSubredditIcon(iconPath, subredditName);
+			if (!fileExists(iconPath)) iconPath = "icon.png"; // if icon cannot be cached, use default
+			if (!success) subtitle = "⚠️ error or subreddit not found (see debugging log) ";
+		}
 
-			/** @type AlfredItem */
-			const alfredItem = {
-				title: `r/${subredditName}`,
-				subtitle: subtitle,
-				arg: subredditName,
-				icon: { path: iconPath },
-			};
-			return alfredItem;
-		});
+		// subscriber count
+		const subscriberData = JSON.parse(
+			readFile($.getenv("alfred_workflow_cache") + "/subscriberCount.json") || "{}",
+		);
+		const subscriberCount = subscriberData[subredditName] || cacheAndReturnSubscriberCount(subredditName);
+		if (!subscriberCount) subtitle = "⚠️ error or subreddit not found (see debugging log) ";
+		subtitle += `👥 ${subscriberCount}`;
+
+		/** @type AlfredItem */
+		const alfredItem = {
+			title: `r/${subredditName}`,
+			subtitle: subtitle,
+			arg: subredditName,
+			icon: { path: iconPath },
+		};
+		return alfredItem;
+	});
 
 	// add hackernews as pseudo-subreddit
 	const addHackernews = $.getenv("add_hackernews") === "1";
