@@ -2,7 +2,6 @@
 ObjC.import("stdlib");
 const app = Application.currentApplication();
 app.includeStandardAdditions = true;
-
 //──────────────────────────────────────────────────────────────────────────────
 
 const fileExists = (/** @type {string} */ filePath) => Application("Finder").exists(Path(filePath));
@@ -39,6 +38,7 @@ function ensureCacheFolderExists() {
 function cacheIsOutdated(path) {
 	let cacheAgeThresholdMins = Number.parseInt($.getenv("cache_age_threshold")) || 15;
 	if (cacheAgeThresholdMins < 1) cacheAgeThresholdMins = 1; // prevent 0 or negative numbers
+	// @ts-ignore
 	const cacheObj = Application("System Events").aliases[path];
 	if (!cacheObj.exists()) return true;
 	const cacheAgeMins = (+new Date() - cacheObj.creationDate()) / 1000 / 60;
@@ -51,7 +51,9 @@ function cacheIsOutdated(path) {
  * @returns {boolean} firstPathOlderThanSecond
  */
 function olderThan(firstPath, secondPath) {
+	// @ts-ignore
 	const firstMdate = +Application("System Events").aliases[firstPath].modificationDate();
+	// @ts-ignore
 	const secondMdate = +Application("System Events").aliases[secondPath].modificationDate();
 	const firstPathOlderThanSecond = firstMdate - secondMdate < 0;
 	return firstPathOlderThanSecond;
@@ -63,24 +65,22 @@ function olderThan(firstPath, secondPath) {
 // biome-ignore lint/correctness/noUnusedVariables: Alfred run
 function run() {
 	const subredditConfig = $.getenv("subreddits").trim().replace(/^r\//gm, "");
-
-	//───────────────────────────────────────────────────────────────────────────
+	const cachePath = $.getenv("alfred_workflow_cache");
 
 	// determine subreddit
-	const prevRunSubreddit = readFile($.getenv("alfred_workflow_cache") + "/current_subreddit");
+	const prevRunSubreddit = readFile(cachePath + "/current_subreddit");
 	const selectedWithAlfred =
 		$.NSProcessInfo.processInfo.environment.objectForKey("selected_subreddit").js;
 	const firstSubredditInConfig = subredditConfig.split("\n")[0]; // only needed for first run
 	const subredditName = selectedWithAlfred || prevRunSubreddit || firstSubredditInConfig;
-	const pathOfThisWorkflow = `${$.getenv("alfred_preferences")}/workflows/${$.getenv(
-		"alfred_workflow_uid",
-	)}`;
+	const pathOfThisWorkflow =
+		$.getenv("alfred_preferences") + "/workflows/" + $.getenv("alfred_workflow_uid");
 
 	ensureCacheFolderExists();
-	writeToFile($.getenv("alfred_workflow_cache") + "/current_subreddit", subredditName);
+	writeToFile(cachePath + "/current_subreddit", subredditName);
 
 	// read posts from cache
-	const subredditCache = `${$.getenv("alfred_workflow_cache")}/${subredditName}.json`;
+	const subredditCache = `${cachePath}/${subredditName}.json`;
 
 	let posts;
 	if (
@@ -95,8 +95,8 @@ function run() {
 		});
 	}
 
-	// IMPORT SUBREDDIT-LOADING-FUNCTIONS
-	// biome-ignore lint/security/noGlobalEval: JXA import HACK
+	// HACK IMPORT SUBREDDIT-LOADING-FUNCTIONS
+	// biome-ignore lint/security/noGlobalEval: JXA import hack
 	eval(readFile(`${pathOfThisWorkflow}/scripts/get-new-posts.js`));
 
 	// marker for old posts
