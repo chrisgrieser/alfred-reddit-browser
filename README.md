@@ -41,7 +41,8 @@ workflow-update mechanism.
 	+ <kbd>⇧⌘⏎</kbd>: Switch to previous subreddit.
 	+ <kbd>⌥⏎</kbd>: Copy URL of post to clipboard.
 	+ <kbd>⇧⏎</kbd>: Open URL (if external link).
-	+ <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. 
+	+ <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. Works with [Alfred Extra
+	  Pane](https://github.com/mr-pennyworth/alfred-extra-pane).
 
 <!-- vale Google.FirstPerson = NO -->
 ## Credits

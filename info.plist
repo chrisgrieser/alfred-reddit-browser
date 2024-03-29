@@ -466,15 +466,17 @@
 	<key>readme</key>
 	<string>## Usage
 - `sub`: Select subreddit to browse.
-	- &lt;kbd&gt;⏎&lt;/kbd&gt;: Browse subreddit in Alfred.
-	- &lt;kbd&gt;⌘⏎&lt;/kbd&gt;: Open subreddit in browser. 
+	+ &lt;kbd&gt;⏎&lt;/kbd&gt;: Browse subreddit in Alfred.
+	+ &lt;kbd&gt;⌘⏎&lt;/kbd&gt;: Open subreddit in browser. 
 - `rr`: Browse the current subreddit.
-	- &lt;kbd&gt;⏎&lt;/kbd&gt;: Open Post on reddit.
-	- &lt;kbd&gt;⌘⏎&lt;/kbd&gt;: Switch to next subreddit.
-	- &lt;kbd&gt;⇧⌘⏎&lt;/kbd&gt;: Switch to previous subreddit.
-	- &lt;kbd&gt;⌥⏎&lt;/kbd&gt;: Copy URL of post to clipboard.
-	- &lt;kbd&gt;⇧⏎&lt;/kbd&gt;: Open external URL (if there is one).
-	- &lt;kbd&gt;⇧&lt;/kbd&gt; or &lt;kbd&gt;⌘Y&lt;/kbd&gt;: Preview the result. You can use the arrow keys to preview to the next result. Mostly useful for images. 
+	+ &lt;kbd&gt;⏎&lt;/kbd&gt;: Open Post on reddit.
+	+ &lt;kbd&gt;⌘⏎&lt;/kbd&gt;: Switch to next subreddit.
+	+ &lt;kbd&gt;⇧⌘⏎&lt;/kbd&gt;: Switch to previous subreddit.
+	+ &lt;kbd&gt;⌥⏎&lt;/kbd&gt;: Copy URL of post to clipboard.
+	+ &lt;kbd&gt;⇧⏎&lt;/kbd&gt;: Open external URL (if there is one).
+	+ &lt;kbd&gt;⇧&lt;/kbd&gt; or &lt;kbd&gt;⌘Y&lt;/kbd&gt;: Preview the result. Works with [Alfred Extra
+	  Pane](https://github.com/mr-pennyworth/alfred-extra-pane).
+
 
 ## Info
 - No reddit account is needed. 
