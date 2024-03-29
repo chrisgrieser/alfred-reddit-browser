@@ -28,6 +28,8 @@ When admitted to the Alfred Gallery, the workflow auto-updates via Alfred's work
 
 ## Usage
 - `sub`: Select subreddit to browse.
+	+ <kbd>⏎</kbd>: Browse subreddit in Alfred.
+	+ <kbd>⌘⏎</kbd>: Open subreddit in browser.
 - `rr`: Browse the current subreddit.
 	+ <kbd>⏎</kbd>: Open Post on reddit.
 	+ <kbd>⌘⏎</kbd>: Switch to next subreddit.
