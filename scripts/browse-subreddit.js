@@ -50,9 +50,12 @@ function cacheIsOutdated(path) {
  * @returns {boolean} firstPathOlderThanSecond
  */
 function olderThan(firstPath, secondPath) {
-	const firstMdate = +Application("System Events").aliases[firstPath].modificationDate();
-	const secondMdate = +Application("System Events").aliases[secondPath].modificationDate();
-	const firstPathOlderThanSecond = firstMdate - secondMdate < 0;
+	const firstItem = Application("System Events").aliases[firstPath];
+	if (!firstItem.exists()) return true;
+	const secondItem = Application("System Events").aliases[secondPath];
+	if (!secondItem.exists()) return false;
+	const firstPathOlderThanSecond =
+		+firstItem.modificationDate() - +secondItem.modificationDate() < 0;
 	return firstPathOlderThanSecond;
 }
 
