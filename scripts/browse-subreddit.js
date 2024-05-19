@@ -36,8 +36,7 @@ function ensureCacheFolderExists() {
 
 /** @param {string} path */
 function cacheIsOutdated(path) {
-	let cacheAgeThresholdMins = Number.parseInt($.getenv("cache_age_threshold"));
-	if (cacheAgeThresholdMins < 1) cacheAgeThresholdMins = 1; // prevent 0 or negative numbers
+	const cacheAgeThresholdMins = Number.parseInt($.getenv("cache_age_threshold"));
 	const cacheObj = Application("System Events").aliases[path];
 	if (!cacheObj.exists()) return true;
 	const cacheAgeMins = (+new Date() - +cacheObj.creationDate()) / 1000 / 60;
@@ -83,10 +82,9 @@ function run() {
 	const subredditCache = `${cachePath}/${subredditName}.json`;
 
 	let posts;
-	if (
-		!cacheIsOutdated(subredditCache) &&
-		olderThan(`${pathOfThisWorkflow}/prefs.plist`, subredditCache)
-	) {
+	const refreshIntervalPassed = cacheIsOutdated(subredditCache);
+	const userPrefsUnchanged = olderThan(`${pathOfThisWorkflow}/prefs.plist`, subredditCache);
+	if (!refreshIntervalPassed && userPrefsUnchanged) {
 		posts = JSON.parse(readFile(subredditCache));
 		return JSON.stringify({
 			variables: { cacheWasUpdated: "false" }, // Alfred vars always strings
@@ -94,6 +92,8 @@ function run() {
 			items: posts,
 		});
 	}
+
+	//───────────────────────────────────────────────────────────────────────────
 
 	// HACK IMPORT SUBREDDIT-LOADING-FUNCTIONS
 	// biome-ignore lint/security/noGlobalEval: JXA import hack
