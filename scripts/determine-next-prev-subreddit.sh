@@ -3,7 +3,6 @@
 
 direction="$1"
 cur_subreddit=$(cat "$alfred_workflow_cache/current_subreddit")
-echo "🖨️ cur_subreddit: $cur_subreddit" >&2
 list_of_subreddits=$(echo "$subreddits" |
 	sed -E 's|^/?r/||') # can be r/ or /r/ https://www.alfredforum.com/topic/20813-reddit-browser/page/2/#comment-114645
 
@@ -13,8 +12,6 @@ if [[ "$direction" == "next" ]]; then
 	next_subreddit=$(echo "$list_of_subreddits" |
 		grep --after-context=1 --extended-regexp "^$cur_subreddit$" |
 		tail -n1)
-	echo "🖨️ next_subreddit: $next_subreddit" >&2
-	echo "🖨️ add_hackernews: $add_hackernews" >&2
 
 	# if already last subreddit, go back to first subreddit
 	if [[ "$next_subreddit" == "$cur_subreddit" && "$add_hackernews" == "0" ]]; then
