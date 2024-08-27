@@ -3,10 +3,10 @@
 <!-- LTeX: enabled=true -->
 ![Showcase subreddit
 selection](https://img.shields.io/github/downloads/chrisgrieser/alfred-reddit-browser/total?label=Total%20Downloads&style=plastic)
-![showcase browsing a
+![Showcase browsing a
 subreddit](https://img.shields.io/github/v/release/chrisgrieser/alfred-reddit-browser?label=Latest%20Release&style=plastic)
 
-Browse your favorite subreddits (and hackernews) via Alfred.  
+Browse your favorite subreddits via Alfred.  
 [Featured in the
 Alfred Gallery](https://alfred.app/workflows/chrisgrieser/reddit-browser/).
 
@@ -29,8 +29,7 @@ Alfred Gallery](https://alfred.app/workflows/chrisgrieser/reddit-browser/).
 ## Installation
 [➡️ Download the latest release.](https://github.com/chrisgrieser/alfred-reddit-browser/releases/latest)
 
-When admitted to the Alfred Gallery, the workflow auto-updates via Alfred's
-workflow-update mechanism.
+The workflow updates automatically via the Alfred Gallery.
 
 ## Usage
 - `sub`: Select subreddit to browse.
@@ -44,6 +43,7 @@ workflow-update mechanism.
 	+ <kbd>⇧⏎</kbd>: Open URL (if external link).
 	+ <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. Works with [Alfred Extra
 	  Pane](https://github.com/mr-pennyworth/alfred-extra-pane).
+- `:reddit-reload`: Force reload the cache. Only needed for debugging purposes.
 
 <!-- vale Google.FirstPerson = NO -->
 ## Credits
