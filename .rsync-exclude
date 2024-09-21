@@ -10,7 +10,9 @@ README.md
 LICENSE
 Justfile
 .build-and-release.sh
+.markdownlint.yaml
 
-alfred.d.ts
-jsconfig.json
+# symlinks
 jxa-globals.d.ts
+jsconfig.json
+alfred.d.ts
