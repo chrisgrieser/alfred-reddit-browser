@@ -81,7 +81,10 @@ function getSettings() {
  * @property {string[]} _tags
  */
 
-/** @param {AlfredItem[]} oldItems */
+/**
+ * @param {AlfredItem[]} oldItems
+ * @returns {AlfredItem[]|string}}
+ */
 function getHackernewsPosts(oldItems) {
 	const opts = getSettings();
 
@@ -93,8 +96,7 @@ function getHackernewsPosts(oldItems) {
 	try {
 		response = JSON.parse(apiResponse);
 	} catch (_error) {
-		// biome-ignore lint/suspicious/noConsole: intentional
-		console.log(`Error parsing JSON. curl response was: ${apiResponse}`);
+		return `Error parsing JSON. curl response was: ${apiResponse}`;
 	}
 
 	const oldUrls = oldItems.map((item) => item.arg);
@@ -191,6 +193,7 @@ function getHackernewsPosts(oldItems) {
 /**
  * @param {string} subredditName
  * @param {AlfredItem[]} oldItems
+ * @returns {AlfredItem[]|string}}
  */
 function getRedditPosts(subredditName, oldItems) {
 	const opts = getSettings();
@@ -204,21 +207,12 @@ function getRedditPosts(subredditName, oldItems) {
 	let response;
 	try {
 		response = JSON.parse(apiResponse);
+		if (response.error) return `Error ${response.error}: ${response.message}`;
 	} catch (_error) {
 		if (apiResponse.includes("blocked by network security")) {
-			const msg = "Blocked by reddit's network security. See debugging log.";
-			app.displayNotification(msg, { withTitle: "Reddit Alfred workflow" });
-			// biome-ignore lint/suspicious/noConsole: intentional
-			console.log("Blocked by reddit's network security. curl-command was:\n\n" + curlCommand);
-		} else {
-			// biome-ignore lint/suspicious/noConsole: intentional
-			console.log(`Error parsing JSON. curl response was: \n\n${apiResponse}`);
+			return "Blocked by reddit's network security. curl-command was:\n\n" + curlCommand;
 		}
-	}
-	if (response.error) {
-		// biome-ignore lint/suspicious/noConsole: intentional
-		console.log(`Error ${response.error}: ${response.message}`);
-		return;
+		return `Error parsing JSON. curl response was: \n\n${apiResponse}`;
 	}
 
 	const oldUrls = oldItems.map((item) => item.arg);
@@ -300,7 +294,7 @@ function getRedditPosts(subredditName, oldItems) {
 function run() {
 	const subreddits = $.getenv("subreddits")
 		.trim()
-		.replace(/^\/?r\//gm, "") // can be r/ or /r/ https://www.alfredforum.com/topic/20813-reddit-browser/page/2/#comment-114645// can be r/ or /r/ https://www.alfredforum.com/topic/20813-reddit-browser/page/2/#comment-114645
+		.replace(/^\/?r\//gm, "") // can be `r/` or `/r/` https://www.alfredforum.com/topic/20813-reddit-browser/page/2/#comment-114645// can be r/ or /r/ https://www.alfredforum.com/topic/20813-reddit-browser/page/2/#comment-114645
 		.split("\n");
 	if ($.getenv("add_hackernews") === "1") subreddits.push("hackernews");
 	const cachePath = $.getenv("alfred_workflow_cache");
@@ -335,8 +329,6 @@ function run() {
 		});
 	}
 
-	//───────────────────────────────────────────────────────────────────────────
-
 	// marker for old posts
 	const oldItems = fileExists(subredditCache) ? JSON.parse(readFile(subredditCache)) : [];
 
@@ -351,18 +343,13 @@ function run() {
 		posts = getRedditPosts(subredditName, oldItems);
 	}
 
-	// GUARD no API response or no posts left after filtering for min upvote count
-	if (!posts) {
-		return JSON.stringify({
-			items: [{ title: "Error", subtitle: "Check the debugging log for more information." }],
-		});
-	}
-	if (posts.length === 0) {
-		return JSON.stringify({ items: [{ title: "No posts higher than minimum upvote count." }] });
-	}
+	// GUARD Error or no posts left after filtering
+	let errorMsg;
+	if (typeof posts === "string") errorMsg = posts;
+	if (posts.length === 0) errorMsg = "No posts higher than minimum upvote count.";
+	if (errorMsg) return JSON.stringify({ items: [{ title: errorMsg, valid: false }] });
 
 	writeToFile(subredditCache, JSON.stringify(posts));
-
 	return JSON.stringify({
 		variables: { cacheWasUpdated: "true" }, // Alfred vars always strings
 		items: posts,
