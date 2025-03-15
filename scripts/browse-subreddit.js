@@ -199,19 +199,23 @@ function getRedditPosts(subredditName, oldItems) {
 	const opts = getSettings();
 
 	// DOCS https://www.reddit.com/dev/api#GET_new
-	// INFO previously, adding a user agent via `-H "User-Agent: Chrome/115.0.0.0"`
-	// was necessary, now (2025-03-06) this results in a network security error
-	// by reddit, but using `curl` without changed user agent works fine.
-	const curlCommand = `curl -sL "https://www.reddit.com/r/${subredditName}/${opts.sortType}.json?limit=${opts.pagesToRequest}"`;
+	// SIC try `curl` with and without user agent, since sometimes one is
+	// blocked, sometimes the other?
+	const apiUrl = `https://www.reddit.com/r/${subredditName}/${opts.sortType}.json?limit=${opts.pagesToRequest}`;
+	let curlCommand = `curl -sL -H "User-Agent: Chrome/115.0.0.0" "${apiUrl}"`;
 	const apiResponse = app.doShellScript(curlCommand);
 	let response;
 	try {
 		response = JSON.parse(apiResponse);
 		if (response.error) {
-			const errorMsg = `Error ${response.error}: ${response.message}`;
-			// biome-ignore lint/suspicious/noConsole: <explanation>
-			console.log(errorMsg + "\ncurl command: " + curlCommand);
-			return errorMsg;
+			curlCommand = `curl -sL "${apiUrl}"`;
+			response = JSON.parse(app.doShellScript(curlCommand));
+			if (response.error) {
+				const errorMsg = `Error ${response.error}: ${response.message}`;
+				// biome-ignore lint/suspicious/noConsole: intentional
+				console.log(errorMsg + "\ncurl command: " + curlCommand);
+				return errorMsg;
+			}
 		}
 	} catch (_error) {
 		return `Error parsing JSON. curl response was: \n\n${apiResponse}`;
