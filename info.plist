@@ -552,10 +552,11 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>## Info
-Sometimes, there will be the error message "You have been blocked by network 
-security." Unfortunately, I am not certain what exactly causes this. Usually, 
-the workflow will work again in a few hours. 
+	<string>## "Blocked by network security"
+Sometimes, there will be the error message "You have been blocked by network
+security." Unfortunately, I am not certain what exactly causes this. Usually,
+the workflow will work again after a few hours. If you are a developer, help
+solving this is welcome.
 
 ## Usage
 - `sub`: Select subreddit to browse.
