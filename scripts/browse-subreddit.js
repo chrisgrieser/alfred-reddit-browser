@@ -355,7 +355,16 @@ function run() {
 			: "See debugging console for details.";
 		return JSON.stringify({
 			items: [
-				{ title: errorMsg, subtitle: info, valid: false },
+				{
+					title: errorMsg,
+					subtitle: info,
+					valid: false,
+					mods: {
+						// in case of error, still allow to switch to next subreddit
+						cmd: { arg: "next", valid: true },
+						"cmd+shift": { arg: "prev", valid: true },
+					},
+				},
 				{
 					title: "Open subreddit in the browser",
 					subtitle: "r/" + subredditName,
