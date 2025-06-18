@@ -104,7 +104,6 @@ function getHackernewsPosts(oldItems) {
 
 	/** @type{AlfredItem[]} */
 	const hits = response.hits.reduce(
-		// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: okay here
 		(/** @type {AlfredItem[]} */ acc, /** @type {hackerNewsItem} */ item) => {
 			if (item.points < opts.minUpvotes) return acc;
 
@@ -198,34 +197,24 @@ function getHackernewsPosts(oldItems) {
 function getRedditPosts(subredditName, oldItems) {
 	const opts = getSettings();
 
+	// INFO user agent is required to avoid network security error by reddit
+	const userAgent =
+		"Alfred " + $.getenv("alfred_workflow_name") + "/" + $.getenv("alfred_workflow_version");
+
 	// DOCS https://www.reddit.com/dev/api#GET_new
-	// SIC try `curl` with and without user agent, since sometimes one is
-	// blocked, sometimes the other?
 	const apiUrl = `https://www.reddit.com/r/${subredditName}/${opts.sortType}.json?limit=${opts.pagesToRequest}`;
-	let curlCommand = `curl -sL -H "User-Agent: Chrome/117.0.0.0" "${apiUrl}"`;
+	const curlCommand = `curl --silent --user-agent "${userAgent}" "${apiUrl}"`;
 	let response;
 	try {
 		response = JSON.parse(app.doShellScript(curlCommand));
 		if (response.error) {
-			curlCommand = `curl -sL "${apiUrl}"`;
-			response = JSON.parse(app.doShellScript(curlCommand));
-			if (response.error) {
-				const errorMsg = `Error ${response.error}: ${response.message}`;
-				return errorMsg;
-			}
-		}
-	} catch (_error) {
-		console.log("Failed curl command: " + curlCommand);
-		const apiResponse = app.doShellScript(curlCommand);
-		try {
-			curlCommand = `curl -sL "${apiUrl}"`;
-			response = JSON.parse(apiResponse);
-		} catch (_error) {
-			console.log("Failed curl command: " + curlCommand);
-			const errorMsg = `Error parsing JSON. curl response was: ${apiResponse}`;
+			const errorMsg = `Error ${response.error}: ${response.message}`;
 			console.log(errorMsg);
 			return errorMsg;
 		}
+	} catch (_error) {
+		console.log("Failed curl command: " + curlCommand);
+		return "Unknown error.";
 	}
 
 	const oldUrls = oldItems.map((item) => item.arg);
@@ -236,7 +225,6 @@ function getRedditPosts(subredditName, oldItems) {
 
 	/** @type{AlfredItem[]} */
 	const redditPosts = response.data.children.reduce(
-		// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: okay here
 		(/** @type {AlfredItem[]} */ acc, /** @type {redditPost} */ data) => {
 			const item = data.data;
 			if (item.score < opts.minUpvotes) return acc;
@@ -368,7 +356,7 @@ function run() {
 				{
 					title: "Open subreddit in the browser",
 					subtitle: "r/" + subredditName,
-					arg: `https://reddit.com/r/${subredditName}`,
+					arg: `https://www.reddit.com/r/${subredditName}`,
 				},
 			],
 		});
