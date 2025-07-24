@@ -76,7 +76,9 @@ function cacheSubredditIcon(iconPath, subredditName) {
 	onlineIcon = onlineIcon.replace(/\?.*$/, ""); // clean url for curl
 
 	// cache icon
-	app.doShellScript(`curl --silent --location "${onlineIcon}" --create-dirs --output "${iconPath}"`);
+	app.doShellScript(
+		`curl --silent --location "${onlineIcon}" --create-dirs --output "${iconPath}"`,
+	);
 }
 
 /**
@@ -88,18 +90,14 @@ function cacheAndReturnSubCount(subredditName) {
 	if (!subredditInfo) return false;
 
 	ensureCacheFolderExists();
+	const cachePath = $.getenv("alfred_workflow_cache") + "/subscriberCount.json";
 	const subscriberCount = subredditInfo.data.subscribers
 		.toString()
 		.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-	const subscriberData = JSON.parse(
-		readFile($.getenv("alfred_workflow_cache") + "/subscriberCount.json") || "{}",
-	);
+	const subscriberData = JSON.parse(readFile(cachePath) || "{}");
 	subscriberData[subredditName] = subscriberCount;
-	writeToFile(
-		`${$.getenv("alfred_workflow_cache")}/subscriberCount.json`,
-		JSON.stringify(subscriberData),
-	);
-	return subscriberCount; // = no error
+	writeToFile(cachePath, JSON.stringify(subscriberData));
+	return subscriberCount;
 }
 
 //──────────────────────────────────────────────────────────────────────────────
@@ -123,10 +121,10 @@ function run() {
 		}
 
 		// subscriber count
-		const subscriberData = JSON.parse(
-			readFile($.getenv("alfred_workflow_cache") + "/subscriberCount.json") || "{}",
-		);
-		const subscriberCount = subscriberData[subredditName] || cacheAndReturnSubCount(subredditName);
+		const cachePath = $.getenv("alfred_workflow_cache") + "/subscriberCount.json";
+		const subscriberData = JSON.parse(readFile(cachePath) || "{}");
+		const subscriberCount =
+			subscriberData[subredditName] || cacheAndReturnSubCount(subredditName);
 		subtitle += subscriberCount ? `👥 ${subscriberCount}` : "⚠️ subscriber count error ";
 
 		/** @type {AlfredItem} */
