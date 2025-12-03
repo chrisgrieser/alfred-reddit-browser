@@ -92,7 +92,7 @@ function getHackernewsPosts(oldItems) {
 	// alternative "https://hacker-news.firebaseio.com/v0/topstories.json";
 	const url = `https://hn.algolia.com/api/v1/search_by_date?tags=front_page&hitsPerPage=${opts.pagesToRequest}`;
 	let response;
-	const apiResponse = app.doShellScript(`curl -sL "${url}"`);
+	const apiResponse = app.doShellScript(`curl --silent --location --max-time 10 "${url}"`);
 	try {
 		response = JSON.parse(apiResponse);
 	} catch (_error) {
@@ -203,7 +203,7 @@ function getRedditPosts(subredditName, oldItems) {
 
 	// DOCS https://www.reddit.com/dev/api#GET_new
 	const apiUrl = `https://www.reddit.com/r/${subredditName}/${opts.sortType}.json?limit=${opts.pagesToRequest}`;
-	const curlCommand = `curl --silent --user-agent "${userAgent}" "${apiUrl}"`;
+	const curlCommand = `curl --silent --max-time 10 --user-agent "${userAgent}" "${apiUrl}" || true`;
 	const response = app.doShellScript(curlCommand);
 	let jsonData
 	try {
