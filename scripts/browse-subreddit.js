@@ -207,7 +207,7 @@ function getRedditPosts(subredditName, oldItems) {
 	const response = app.doShellScript(curlCommand);
 	let jsonData
 	try {
-		jsonData = JSON.parse(app.doShellScript(curlCommand));
+		jsonData = JSON.parse(response);
 		if (jsonData.error) {
 			const errorMsg = `Error ${jsonData.error}: ${jsonData.message}`;
 			console.log(errorMsg);
