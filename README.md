@@ -47,16 +47,16 @@ The workflow updates automatically via the Alfred Gallery.
 
 ## Usage
 - `sub`: Select subreddit to browse.
-	+ <kbd>⏎</kbd>: Browse subreddit in Alfred.
-	+ <kbd>⌘⏎</kbd>: Open subreddit in browser.
+    - <kbd>⏎</kbd>: Browse subreddit in Alfred.
+    - <kbd>⌘⏎</kbd>: Open subreddit in browser.
 - `rr`: Browse the current subreddit.
-	+ <kbd>⏎</kbd>: Open Post on reddit.
-	+ <kbd>⌘⏎</kbd>: Switch to next subreddit.
-	+ <kbd>⇧⌘⏎</kbd>: Switch to previous subreddit.
-	+ <kbd>⌥⏎</kbd>: Copy URL of post to clipboard.
-	+ <kbd>⇧⏎</kbd>: Open URL (if external link).
-	+ <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. Works with [Alfred Extra
-	  Pane](https://github.com/mr-pennyworth/alfred-extra-pane).
+    - <kbd>⏎</kbd>: Open Post on reddit.
+    - <kbd>⌘⏎</kbd>: Switch to next subreddit.
+    - <kbd>⇧⌘⏎</kbd>: Switch to previous subreddit.
+    - <kbd>⌥⏎</kbd>: Copy URL of post to clipboard.
+    - <kbd>⇧⏎</kbd>: Open URL (if external link).
+    - <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. Works with [Alfred Extra
+      Pane](https://github.com/mr-pennyworth/alfred-extra-pane).
 - `:reddit-reload`: Force reload the cache. Only needed for debugging purposes.
 
 ## "Blocked by network security"
