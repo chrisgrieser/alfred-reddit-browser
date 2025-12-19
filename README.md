@@ -1,4 +1,4 @@
-# Alfred Reddit Browser
+# Alfred reddit browser
 ![GitHub downloads](https://img.shields.io/github/downloads/chrisgrieser/alfred-reddit-browser/total?label=GitHub%20Downloads&style=plastic&logo=github)
 ![Alfred gallery downloads](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fchrisgrieser%2F.config%2Frefs%2Fheads%2Fmain%2FAlfred.alfredpreferences%2Falfred-gallery-downloads.yaml&query=reddit-browser&style=plastic&logo=alfred&label=Gallery%20Downloads&color=%235C1F87)
 ![Latest release](https://img.shields.io/github/v/release/chrisgrieser/alfred-reddit-browser?label=Latest%20Release&style=plastic)
@@ -13,7 +13,7 @@ Alfred Gallery](https://alfred.app/workflows/chrisgrieser/reddit-browser/).
 
 <img width="50%" alt="settings the workflow has to offer" src="https://github.com/chrisgrieser/alfred-reddit-browser/assets/73286100/81177245-8c1b-47fa-9078-bf1de78248fd">
 
-## Table of Content
+## Table of content
 
 <!-- toc -->
 
