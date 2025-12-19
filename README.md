@@ -55,8 +55,8 @@ The workflow updates automatically via the Alfred Gallery.
     - <kbd>⇧⌘⏎</kbd>: Switch to previous subreddit.
     - <kbd>⌥⏎</kbd>: Copy URL of post to clipboard.
     - <kbd>⇧⏎</kbd>: Open URL (if external link).
-    - <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. Works with [Alfred Extra
-      Pane](https://github.com/mr-pennyworth/alfred-extra-pane).
+    - <kbd>⇧ ⇧</kbd> or  or <kbd>⌘Y ⌘Y</kbd>: Preview the result. Works with
+      [Alfred Extra Pane](https://github.com/mr-pennyworth/alfred-extra-pane).
 - `:reddit-reload`: Force reload the cache. Only needed for debugging purposes.
 
 ## "Blocked by network security"
