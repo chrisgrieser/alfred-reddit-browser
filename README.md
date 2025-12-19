@@ -3,11 +3,6 @@
 ![Alfred gallery downloads](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fchrisgrieser%2F.config%2Frefs%2Fheads%2Fmain%2FAlfred.alfredpreferences%2Falfred-gallery-downloads.yaml&query=reddit-browser&style=plastic&logo=alfred&label=Gallery%20Downloads&color=%235C1F87)
 ![Latest release](https://img.shields.io/github/v/release/chrisgrieser/alfred-reddit-browser?label=Latest%20Release&style=plastic)
 
-![Showcase subreddit
-selection](https://img.shields.io/github/downloads/chrisgrieser/alfred-reddit-browser/total?label=Total%20Downloads&style=plastic)
-![Showcase browsing a
-subreddit](https://img.shields.io/github/v/release/chrisgrieser/alfred-reddit-browser?label=Latest%20Release&style=plastic)
-
 Browse your favorite subreddits via Alfred.  
 [Featured in the
 Alfred Gallery](https://alfred.app/workflows/chrisgrieser/reddit-browser/).
@@ -32,7 +27,7 @@ Alfred Gallery](https://alfred.app/workflows/chrisgrieser/reddit-browser/).
 
 ## Features
 - Browse subreddits, switch between subreddits.
-- No reddit account needed.
+- No Reddit account needed.
 - Save scrolling positions, mark posts as new, old or visited.
 - Minimum upvotes to display posts, customizable sorting method.
 - Can also browse hackernews.
@@ -47,15 +42,16 @@ The workflow updates automatically via the Alfred Gallery.
 
 ## Usage
 - `sub`: Select subreddit to browse.
+- o
     - <kbd>⏎</kbd>: Browse subreddit in Alfred.
     - <kbd>⌘⏎</kbd>: Open subreddit in browser.
 - `rr`: Browse the current subreddit.
-    - <kbd>⏎</kbd>: Open Post on reddit.
+    - <kbd>⏎</kbd>: Open Post on Reddit.
     - <kbd>⌘⏎</kbd>: Switch to next subreddit.
     - <kbd>⇧⌘⏎</kbd>: Switch to previous subreddit.
     - <kbd>⌥⏎</kbd>: Copy URL of post to clipboard.
     - <kbd>⇧⏎</kbd>: Open URL (if external link).
-    - <kbd>⇧ ⇧</kbd> or  or <kbd>⌘Y ⌘Y</kbd>: Preview the result. Works with
+    - <kbd>⇧</kbd> or <kbd>⌘Y</kbd>: Preview the result. Works with
       [Alfred Extra Pane](https://github.com/mr-pennyworth/alfred-extra-pane).
 - `:reddit-reload`: Force reload the cache. Only needed for debugging purposes.
 
