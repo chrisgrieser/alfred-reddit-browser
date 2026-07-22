@@ -68,6 +68,7 @@ function getSettings() {
 		sortType: $.getenv("sort_type") || "hot",
 		hideStickied: $.getenv("hide_stickied") === "1",
 		pagesToRequest: Number.parseInt($.getenv("pages_to_request")),
+		customUserAgent: $.getenv("custom_user_agent"),
 	};
 }
 
@@ -198,11 +199,12 @@ function getRedditPosts(subredditName, oldItems) {
 	const opts = getSettings();
 
 	// INFO user agent is required to avoid network security error by reddit
-	const userAgent =
+	const userAgent = opts.customUserAgent ||
 		"Alfred " + $.getenv("alfred_workflow_name") + "/" + $.getenv("alfred_workflow_version");
 
 	// DOCS https://www.reddit.com/dev/api#GET_new
 	const apiUrl = `https://www.reddit.com/r/${subredditName}/${opts.sortType}.json?limit=${opts.pagesToRequest}`;
+	console.log("API URL:", apiUrl);
 	const curlCommand = `curl --silent --max-time 10 --user-agent "${userAgent}" "${apiUrl}" || true`;
 	const response = app.doShellScript(curlCommand);
 	let jsonData;
