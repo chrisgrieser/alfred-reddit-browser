@@ -30,7 +30,7 @@ Alfred Gallery](https://alfred.app/workflows/chrisgrieser/reddit-browser/).
 - No Reddit account needed.
 - Save scrolling positions, mark posts as new, old or visited.
 - Minimum upvotes to display posts, customizable sorting method.
-- Can also browse hackernews.
+- Can also browse `hackernews`.
 - Optionally open in posts [old reddit](https://old.reddit.com/).
 - Due to smart caching, this workflow should not hit API rate limits (under
   normal usage).
@@ -42,7 +42,6 @@ The workflow updates automatically via the Alfred Gallery.
 
 ## Usage
 - `sub`: Select subreddit to browse.
-- o
     - <kbd>⏎</kbd>: Browse subreddit in Alfred.
     - <kbd>⌘⏎</kbd>: Open subreddit in browser.
 - `rr`: Browse the current subreddit.
@@ -57,9 +56,15 @@ The workflow updates automatically via the Alfred Gallery.
 
 ## "Blocked by network security"
 Sometimes, there will be the error message "You have been blocked by network
-security." Unfortunately, I am not certain what exactly causes this. Usually,
-the workflow will work again after a few hours. If you are a developer, help
-solving this is welcome.
+security."
+
+That's a restriction by Reddit, getting stricter every day about its API usage.
+Even though I earn nothing with this workflow (and actually drive more traffic
+to Reddit with it), more and more people report getting blocked, including
+myself, while others report it still works for them.
+
+Unfortunately, there is nothing I can do about it on my side, sorry. Best you
+can do is [complain to Reddit](https://www.reddit.com/r/help/).
 
 ## Credits
 In my day job, I am a sociologist studying the social mechanisms underlying the

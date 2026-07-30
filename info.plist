@@ -518,9 +518,17 @@
 	<key>readme</key>
 	<string>## "Blocked by network security"
 Sometimes, there will be the error message "You have been blocked by network
-security." Unfortunately, I am not certain what exactly causes this. Usually,
-the workflow will work again after a few hours. If you are a developer, help
-solving this is welcome.
+security."
+
+That's a restriction by Reddit, getting stricter every day about its API usage.
+Even though I earn nothing with this workflow (and actually drive more traffic
+to Reddit with it), more and more people report getting blocked, including
+myself, while others report it still works for them.
+
+Unfortunately, there is nothing I can do about it on my side, sorry. Best you
+can do is [complain to Reddit](https://www.reddit.com/r/help/).
+
+---
 
 ## Usage
 - `sub`: Select subreddit to browse.
